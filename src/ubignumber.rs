@@ -245,7 +245,7 @@ impl UBigNumber {
 			
 			// we want to divide into the partial dividend!
 			let u_first = partial_dividend.safe_word(divisor.len());
-			let u_second = partial_dividend[divisor.len() - 1];
+			let u_second = partial_dividend.safe_word(divisor.len() - 1);
 
 			let v_first = divisor[divisor.len() - 1];
 
