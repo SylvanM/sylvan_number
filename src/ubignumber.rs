@@ -152,7 +152,7 @@ impl UBigNumber {
 		}
 	}
 
-	fn safe_word(&self, index: usize) -> Word {
+	pub fn safe_word(&self, index: usize) -> Word {
 		if index >= self.len() {
 			0
 		} else {
