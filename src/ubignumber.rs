@@ -1,4 +1,5 @@
-use std::{cmp::max, fmt::Debug, ops::{Add, AddAssign, BitOr, BitOrAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Range, Rem, RemAssign, Shl, ShlAssign, Shr, ShrAssign, Sub, SubAssign}};
+use std::{cmp::max, fmt::Debug, io::StderrLock, ops::{Add, AddAssign, BitOr, BitOrAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Range, Rem, RemAssign, Shl, ShlAssign, Shr, ShrAssign, Sub, SubAssign}};
+use algebra_kit::algebra::{EuclideanDomain, Ring};
 use rand::Rng;
 
 use crate::int_utility;
@@ -106,7 +107,7 @@ impl UBigNumber {
 		UBigNumber { words: vec![0] }
 	}
 
-	fn is_zero(&self) -> bool {
+	pub fn is_zero(&self) -> bool {
 		self.words == [0]
 	}
 
@@ -298,7 +299,6 @@ impl UBigNumber {
 				UBigNumber::div_rem_core(self.clone(), divisor.clone())
 			}
 		}
-
 	}
 }
 

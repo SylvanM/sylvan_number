@@ -1,6 +1,7 @@
 #![feature(bigint_helper_methods)]
 
-pub mod big_number;
+pub mod ubignumber;
+pub mod bignumber;
 pub mod int_utility;
 
 #[cfg(test)]
@@ -11,7 +12,7 @@ mod tests {
     use algebra_kit::algebra::{EuclideanDomain, Ring};
     use rand::{thread_rng, Rng};
 
-    use crate::big_number::UBigNumber;
+    use crate::ubignumber::UBigNumber;
 
     #[test]
     fn test_conversions() {

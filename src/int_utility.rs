@@ -1,4 +1,4 @@
-use crate::big_number::{self, Word};
+use crate::ubignumber::{self, Word};
 
 /// Computes the 128-bit result of the operation `a*b + c + d`
 /// 
@@ -39,5 +39,5 @@ pub fn div_wide(hi: Word, lo: Word, divisor: Word) -> (Word, Word, Word) {
 	let divisor = divisor as u128;
 	let (q, r) = (dividend / divisor, (dividend % divisor) as Word);
 	
-	((q >> big_number::WORD_BIT_COUNT) as Word, (q & ((1 << big_number::WORD_BIT_COUNT) - 1)) as Word, r)
+	((q >> ubignumber::WORD_BIT_COUNT) as Word, (q & ((1 << ubignumber::WORD_BIT_COUNT) - 1)) as Word, r)
 }
