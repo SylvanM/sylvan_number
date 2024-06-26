@@ -285,6 +285,9 @@ impl UBigNumber {
 	}
 
 	pub fn quotient_and_remainder(&self, divisor: &Self) -> (Self, Self) {
+		println!("Dividend: {:?}", self);
+		println!("Divisor: {:?}", divisor);
+
 		if divisor.is_zero() {
 			panic!("Division by zero")
 		} else if self < divisor {
