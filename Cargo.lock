@@ -72,7 +72,7 @@ dependencies = [
 
 [[package]]
 name = "sylvan_number"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "algebra_kit",
  "rand",

@@ -247,20 +247,28 @@ impl UBigNumber {
 			let u_first = partial_dividend.safe_word(divisor.len());
 			let u_second = partial_dividend.safe_word(divisor.len() - 1);
 
+			// println!("Partial dividend: {:?}", partial_dividend);
+
 			let v_first = divisor[divisor.len() - 1];
+			// println!("Doing long division: {:?} {:?} / {:?}", u_first, u_second, v_first);
 
-			let (q_hi, mut qhat, _) = int_utility::div_wide(u_first, u_second, v_first);
+			let (q_hi, q_lo, _) = int_utility::div_wide(u_first, u_second, v_first);
+			let mut qhat = UBigNumber::from_words(vec![q_lo, q_hi]);
 
-			debug_assert_eq!(q_hi, 0);
+			// println!("Result of long division is {:?}", qhat);
 
-			let mut partial_product = divisor.clone() * qhat.into();
+			
+
+			let mut partial_product = divisor.clone() * qhat.clone().into();
 
 			while partial_product > partial_dividend {
-				qhat -= 1;
+				qhat -= 1.into();
 				partial_product -= divisor.clone();
 			}
 
-			quotient_words[j] = qhat;
+			debug_assert_eq!(qhat.safe_word(1), 0);
+
+			quotient_words[j] = qhat[0];
 
 			partial_remainder = partial_dividend.clone() - partial_product;
 
@@ -285,8 +293,8 @@ impl UBigNumber {
 	}
 
 	pub fn quotient_and_remainder(&self, divisor: &Self) -> (Self, Self) {
-		println!("Dividend: {:?}", self);
-		println!("Divisor: {:?}", divisor);
+		// println!("Dividend: {:?}", self);
+		// println!("Divisor: {:?}", divisor);
 
 		if divisor.is_zero() {
 			panic!("Division by zero")

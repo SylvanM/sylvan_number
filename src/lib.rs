@@ -146,6 +146,15 @@ mod tests {
         }
 
         {
+            let dividend: UBigNumber = "0x40000000000000000000000000000000000000000000000000000000000000113FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF855".into();
+            let divisor: UBigNumber = "0x2000000000000000000000000000000000000000000000000000000000000009B".into();
+            let correct_quotient: UBigNumber = "1ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffef".into();
+            let correct_remainder: UBigNumber = 0x2A0.into();
+            assert_eq!(correct_quotient, dividend.clone() / divisor.clone());
+            assert_eq!(correct_remainder, dividend % divisor);
+        }
+
+        {
             let dividend = UBigNumber::from_words(vec![1, 2, 9, 8, 4, 1]);
             let divisor = UBigNumber::from_words(vec![2, 4, 8]);
             let (q, r) = dividend.quotient_and_remainder(&divisor);
